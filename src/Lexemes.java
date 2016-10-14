@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.Scanner;
 import java.util.Arrays;
 
@@ -7,7 +6,7 @@ public class Lexemes {
     public static void main(String[] args) {
         String fString;
         String sString;
-        int number = 0;
+        int number;
         ArrayList<String> numbers = new ArrayList<>();
         ArrayList<String> words = new ArrayList<>();
         ArrayList<String> numbersInBinarry = new ArrayList<>();
@@ -20,7 +19,7 @@ public class Lexemes {
         System.out.println("Введите целое число:");
         number = Integer.valueOf(sc.nextLine());
         String[] buffer = fString.split("[" + sString + "]+");
-        System.out.println("Введенная строка:");
+        System.out.print("Введенная строка:");
         System.out.println(Arrays.toString(buffer));
         words.addAll(Arrays.asList(buffer));
         int differenceByRemoved = 0;
@@ -81,6 +80,6 @@ public class Lexemes {
         if (check == true) {
             numbers.add(positionOfNumber + 1, String.valueOf(-number));
         }
-        System.out.println("Ряд, после преобразований: " + numbers.toString());
+        System.out.println("Ряд после преобразований: " + numbers.toString());
     }
 }
