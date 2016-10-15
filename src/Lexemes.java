@@ -59,27 +59,23 @@ public class Lexemes {
             }
         }
         System.out.println("Слова русскими буквами: " + russianWords.toString());
-        boolean check = false;
-        int positionOfNumber = 0;
+        int positionOfNumber;
         int positionOfLowest = 0;
+        StringBuffer stringOfNumbers = new StringBuffer(numbers.toString());
+        System.out.println(stringOfNumbers);
+        positionOfNumber = stringOfNumbers.indexOf(String.valueOf(number));
+        stringOfNumbers.replace(positionOfNumber + String.valueOf(number).length(), positionOfNumber + String.valueOf(number).length(), ", " + String.valueOf(-number));
         for (int i = 0; i < numbers.size(); i++) {
-            if (number == Integer.valueOf(numbers.get(i).toString())) {
-                check = true;
-                for (int j = 0; j < numbers.size(); j++)
-                    if (Integer.valueOf(numbers.get(j).toString()) < number)
-                        positionOfLowest = j;
-                numbers.remove(positionOfLowest);
-                break;
-            }
+                if (Integer.valueOf(numbers.get(i).toString()) < number)
+                    positionOfLowest = i;
         }
-        for (int i = 0; i < numbers.size(); i++) {
-            if (number == Integer.valueOf(numbers.get(i).toString())) {
-                positionOfNumber = i;
-            }
+        if(positionOfLowest==0) {
+            System.out.println("Введено минимальное значение");
+            System.exit(0);
         }
-        if (check == true) {
-            numbers.add(positionOfNumber + 1, String.valueOf(-number));
-        }
-        System.out.println("Ряд после преобразований: " + numbers.toString());
+        int positionOfLowestOld = positionOfLowest;
+        positionOfLowest = stringOfNumbers.indexOf(numbers.get(positionOfLowest).toString());
+        stringOfNumbers.replace(positionOfLowest-2,positionOfLowest+numbers.get(positionOfLowestOld).toString().length(),"");
+        System.out.println("Ряд после преобразований: "+stringOfNumbers);
     }
 }
